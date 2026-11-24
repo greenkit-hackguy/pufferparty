@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Puffer Pop Party</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="fish">🐡</span><div><h1>Puffer Pop Party</h1><p>Pass it. Name it. Don't pop!</p></div></div>
+      <div id="connection" class="connection">Connecting…</div>
+    </header>
+
+    <section id="home" class="panel home">
+      <div class="hero"><span class="hero-fish">🐡</span><h2>Ready to risk it?</h2><p>Make a room, invite your friends, and see who can keep the puffer calm.</p></div>
+      <label>Your nickname<input id="nickname" maxlength="18" placeholder="e.g. FishFan42" autocomplete="nickname"></label>
+      <div class="home-actions">
+        <button id="createRoom" class="primary">Create a room</button>
+        <div class="join-row"><input id="roomCodeInput" maxlength="5" placeholder="ROOM CODE" autocomplete="off"><button id="joinRoom">Join room</button></div>
+      </div>
+      <p class="tiny">Everyone can join from a different device using the same room code.</p>
+      <p id="homeError" class="error"></p>
+    </section>
+
+    <section id="lobby" class="panel hidden">
+      <div class="lobby-head"><div><p class="eyebrow">ROOM CODE</p><div class="room-code" id="roomCodeDisplay">-----</div></div><button id="copyCode" class="quiet">Copy invite code</button></div>
+      <h2>Waiting for players…</h2>
+      <p class="muted">Share the code with your friends. The host can start when everyone is ready.</p>
+      <div id="lobbyPlayers" class="player-grid"></div>
+      <button id="startGame" class="primary wide hidden">Start game</button>
+      <p id="lobbyNote" class="tiny">At least 2 players recommended. Up to 10 players.</p>
+      <p id="lobbyError" class="error"></p>
+      <button id="leaveLobby" class="text-button">Leave room</button>
+    </section>
+
+    <section id="game" class="panel hidden">
+      <div class="game-top"><div><p class="eyebrow">CATEGORY</p><h2 id="category">Animals</h2></div><div class="turn-pill" id="turnLabel">Waiting…</div></div>
+      <div class="puffer-stage"><div id="puffer" class="puffer">🐡</div><div class="fuse"><span id="fuseBar"></span></div><p id="pufferMessage">Keep the puffer calm…</p></div>
+      <div class="game-status"><span id="roundLabel">Round 1</span><span id="heartsLabel">❤️ ❤️ ❤️</span></div>
+      <div id="answerArea" class="answer-area hidden"><label id="answerPrompt">Name something in this category</label><div class="answer-row"><input id="answerInput" maxlength="36" placeholder="Your answer…" autocomplete="off"><button id="submitAnswer" class="primary">Pass!</button></div><p class="tiny">No repeats. Think fast!</p></div>
+      <div id="waitingArea" class="waiting-area">Watch the puffer and get ready for your turn.</div>
+      <div class="columns"><div><h3>Players</h3><div id="gamePlayers" class="score-list"></div></div><div><h3>Answers this round</h3><div id="answerList" class="answer-list"></div></div></div>
+      <p id="gameError" class="error"></p>
+    </section>
+
+    <section id="results" class="panel hidden">
+      <div class="hero"><span class="hero-fish">🏆</span><h2 id="winnerTitle">We have a winner!</h2><p id="winnerText"></p></div>
+      <div id="finalPlayers" class="score-list"></div>
+      <button id="playAgain" class="primary wide">Play again</button>
+      <button id="backHome" class="text-button">Back to home</button>
+    </section>
+    <footer>Made for game nights · A fan-made party game</footer>
+  </main>
+</body>
+</html>
